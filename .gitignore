@@ -1,0 +1,4 @@
+/venv
+.env
+samapp.py
+__pycache__
