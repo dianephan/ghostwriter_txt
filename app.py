@@ -10,8 +10,8 @@ app.config['SECRET_KEY'] = 'fu3rdtimecharm!'
 @app.route('/bot', methods=['POST'])
 def ghost_writer():
     incoming_msg = request.values['Body']
-    chat_log = session.get('chat_log')
-    story = write_story(chat_log)
+    session_story = session.get('session_story')
+    story = write_story(session_story)
 
     file1 = open("spookystory.txt","a") 
     if (os.stat("spookystory.txt").st_size == 0): 
@@ -19,13 +19,12 @@ def ghost_writer():
         file1.write("The following is a spooky story written for kids, just in time for Halloween. Everyone always talks about the old house at the end of the street, but I couldn’t believe what happened when I went inside.")
     if incoming_msg == "the end":
         msg = MessagingResponse()
-        msg.message("To be continued...")
+        msg.message("To be continued...?")
         file1.close()
         return str(msg)
-
-    session['chat_log'] = append_to_story(story, chat_log)
+    session['session_story'] = append_to_story(story, session_story)
     file1.write(story)
-    print("the session chat_log = ", chat_log)
+    print("the session session_story = ", session_story)
 
     msg = MessagingResponse()
     msg.message(story)

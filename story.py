@@ -10,11 +10,11 @@ completion = openai.Completion()
 
 session_prompt = """The following is a spooky story written for kids, just in time for Halloween. Everyone always talks about the old house at the end of the street, but I couldn’t believe what happened when I went inside."""
 
-def write_story(chat_log=None):
-    if chat_log == None: 
+def write_story(session_story=None):
+    if session_story == None: 
         prompt_text = session_prompt
     else:
-        prompt_text = f'{chat_log}'
+        prompt_text = f'{session_story}'
     response = openai.Completion.create(
       engine="davinci",
       prompt=prompt_text,
@@ -28,7 +28,7 @@ def write_story(chat_log=None):
     print("Story = ", story)
     return str(story)
 
-def append_to_story(story, chat_log=None):
-    if chat_log is None:
-        chat_log = session_prompt
-    return f'{chat_log}{story}'
+def append_to_story(story, session_story=None):
+    if session_story is None:
+        session_story = session_prompt
+    return f'{session_story}{story}'
