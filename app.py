@@ -5,7 +5,7 @@ from story import write_story, append_to_story
 
 app = Flask(__name__)
 # if for some reason, your conversation with the chef gets weird, change the secret key 
-app.config['SECRET_KEY'] = 'fu3rdtimecharm!'
+app.config['SECRET_KEY'] = 'dsfdasfdsafdsafdsagdsagdfsaads!'
 
 @app.route('/bot', methods=['POST'])
 def ghost_writer():
